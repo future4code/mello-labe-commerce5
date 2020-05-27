@@ -37,7 +37,7 @@ export class CartIndex extends Component {
             return accumulator + currentProduct.product.value * currentProduct.quantity
         }, 0)
     }
-    
+
     render(){
         return(
             <CartWrapper>
