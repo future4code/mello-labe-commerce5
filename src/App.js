@@ -146,7 +146,7 @@ class App extends React.Component {
 
   render () {
     const filteredProducts = this.getFilteredProducts()
-    const orderedProducts = filteredProducts.sort(this.sortProducts) 
+    const orderedProducts = filteredProducts.sort(this.productsOrganization) 
 
     return (
       <Geral>
