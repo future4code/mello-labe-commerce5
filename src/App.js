@@ -96,6 +96,7 @@ const Footer = styled.footer`
     height: 10vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
@@ -115,13 +116,49 @@ class App extends React.Component {
       maxValue: ""
     }
   }
-  
-  getFilteredProducts() {
-    const { products } = this.state
 
-    let filteredProducts = products.filter((product) => {
-        const productName = product.name
-        return productName
+
+  changeFilterValues = (updatedFilterValues) => {
+    this.setState({
+      filter: {
+        ...this.state.filter,
+        ...updatedFilterValues,
+      }
+    })
+  }
+
+  addItemToCart = (product) => {
+    const newCart = [...this.state.cart]
+
+    const productInCart = this.state.cart.findIndex((cartItem) => cartItem.product.id === product.id)
+    
+    if(productInCart <= -1){
+      newCart.push({product: product, quantity: 1})
+    } else {
+      newCart[productInCart].quantity += 1
+    }
+
+    this.setState({
+      cart: newCart,
+    })
+    console.log(newCart)
+  }
+
+  
+
+  getFilteredProducts() {
+    const { products, searchProductValue, filter } = this.state
+    
+    let filteredProducts = products
+      .filter(product => {
+        const productName = product.name.toLowerCase()
+        return productName.indexOf(searchProductValue.toLowerCase()) > -1
+      })
+      .filter((product) => {
+        return product.value < (filter.maxValue || Infinity)
+      })
+      .filter((product) => {
+        return product.value > (filter.minValue || 0)
       })
 
     return filteredProducts
@@ -149,16 +186,7 @@ class App extends React.Component {
     })
   }
 
-  changeFilterValues = (updatedValues) => {
-    this.setState({
-      filters: {
-        ...this.state.filters,
-        ...updatedValues,
-      }
-    })
-  }
-
-  updatedValue = (event) => {
+  newInputValue = (event) => {
     this.setState({
       searchProductValue: event.target.value,
     })
@@ -174,14 +202,14 @@ class App extends React.Component {
         <AppContainer viewCart={this.state.viewCart}>
 
           <SideBar
-            onChangeValue={this.filterUpdate}
+            onChangeValue={this.changeFilterValues}
             searchProductValue={this.state.searchProductValue}
-            updatedFiltersValue={this.updatedValue}
+            newSearchValue={this.newInputValue}
             />
 
           <AllProducts
           products={organizedProducts} 
-          addProduct = {this.buyProduct} 
+          addProduct = {this.addItemToCart} 
           onChangeOrder = {this.changeOrganization}
           />
 

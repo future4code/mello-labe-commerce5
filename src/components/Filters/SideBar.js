@@ -19,6 +19,11 @@ const FieldSearch = styled.div`
 `
 const InputValue = styled.input`
     margin-top: 5px;
+    border: none;
+    border-bottom: solid 1px;
+    outline: none;
+    background: transparent;
+    -webkit-appearance: none;
 `
 
 export const SideBar = (props) => {
@@ -70,9 +75,9 @@ export const SideBar = (props) => {
                 <label>Buscar Produto:</label>
                 <InputValue
                     type="text"
-                    name="buscaNome"
+                    name="searchNome"
                     value={props.searchProductValue}
-                    onChange={props.updatedFilterValues}
+                    onChange={props.newSearchValue}
                 />
             </FieldSearch>
 

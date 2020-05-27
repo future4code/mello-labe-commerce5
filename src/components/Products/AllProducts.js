@@ -35,8 +35,8 @@ const ProductGrid = styled.div`
 `;
 
 export const AllProducts = (props) => {
-    const {products=[]} = props;
-    const {buyProduct} = props;
+    const {products} = props;
+    const {addProduct} = props;
     const {onChangeOrder} = props;
 
     return(
@@ -57,7 +57,7 @@ export const AllProducts = (props) => {
                     <OneProduct
                         key={product.name}
                         product={product}
-                        onAddToCart={() => buyProduct(product)}
+                        onAddToCart={() => addProduct(product)}
                     />
                 ))}
             </ProductGrid>
