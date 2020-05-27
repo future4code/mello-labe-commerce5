@@ -17,6 +17,27 @@ const ShoppingList = styled.ul`
 
 export class CartIndex extends Component {
 
+    getCartList(){
+        const shoppingList = this.props.cart.map(itens => {
+            const productName = `${itens.quantity}x ${itens.product.name}`
+
+            return(
+                <CartItens
+                    key={itens.product.name}
+                    productName={productName}
+                    onDelete={() => this.props.removeCartItem(itens.product)}
+                />
+            )
+        })
+        return shoppingList
+    }
+
+    getCartTotal(){
+        return this.props.cart.reduce((accumulator, currentProduct) => {
+            return accumulator + currentProduct.product.value * currentProduct.quantity
+        }, 0)
+    }
+    
     render(){
         return(
             <CartWrapper>
