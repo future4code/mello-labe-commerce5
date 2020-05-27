@@ -13,7 +13,7 @@ const products = [
   {
     id: 1,
     name: "Ágata Verde",
-    value: 1210.0,
+    value: 1818.0,
     urlPhoto: "https://16806.cdn.simplo7.net/static/16806/sku/thumb_4416-2-%C3%81GATA-AZUL.jpg",
   },
   {
@@ -86,9 +86,9 @@ const CartImg = styled.img`
   position: fixed;
   right: 20px;
   top: 85%;
-  -webkit-box-shadow: 10px 10px 10px #999; 
-	   -moz-box-shadow: 10px 10px 10px #999;
-	        box-shadow: 10px 10px 10px #999;	
+  -webkit-box-shadow: 5px 5px 5px silver; 
+	-moz-box-shadow: 5px 5px 5px silver;
+	box-shadow: 5px 5px 5px silver;	
 `;
 
 const Footer = styled.footer`
@@ -146,14 +146,14 @@ class App extends React.Component {
 
   render () {
     const filteredProducts = this.getFilteredProducts()
-    const orderedProducts = filteredProducts.sort(this.sortProducts) 
+    const organizedProducts = filteredProducts.sort(this.productsOrganization) 
 
     return (
       <Geral>
         <AppContainer viewCart={this.state.viewCart}>
           <SideBar/>
           <AllProducts
-          products={orderedProducts} 
+          products={organizedProducts} 
           addProduct = {this.buyProduct} 
           onChangeOrder = {this.changeOrganization}
           />

@@ -17,13 +17,14 @@ const Header = styled.header`
 `;
 
 const ShadowTitle = styled.h2`
-    text-shadow: grey 0.1em 0.1em 0.2em;
+    text-shadow: silver 5px 5px 10px;
 `;
 
 const SelectHeight = styled.select`
     height: 30px;
     border-radius: 10px;
     border: none;
+    margin-left: 10px;
 `;
 
 const ProductGrid = styled.div`
@@ -43,10 +44,13 @@ export const AllProducts = (props) => {
             <Header>
                 <ShadowTitle>Pedras Preciosas</ShadowTitle>
                 <p>Quantidade de Produtos: {products.length} </p>
-                <SelectHeight onChange={onChangeOrder}>
-                    <option value="increasing">Preço: Crescente</option>
-                    <option value="decreasing">Preço: Decrescente</option>
-                </SelectHeight>
+                <div>
+                    <label>Ordernar Por:</label>
+                    <SelectHeight onChange={onChangeOrder}>
+                        <option value="increasing">Menor Valor</option>
+                        <option value="decreasing">Maior Valor</option>
+                    </SelectHeight>
+                </div>
             </Header>
             <ProductGrid>
                 {products.map((product) => (
