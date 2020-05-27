@@ -86,9 +86,9 @@ const CartImg = styled.img`
   position: fixed;
   right: 20px;
   top: 85%;
-  -webkit-box-shadow: 10px 10px 10px #999; 
-	   -moz-box-shadow: 10px 10px 10px #999;
-	        box-shadow: 10px 10px 10px #999;	
+  -webkit-box-shadow: 5px 5px 5px silver; 
+	   -moz-box-shadow: 5px 5px 5px silver;
+	        box-shadow: 5px 5px 5px silver;	
 `;
 
 const Footer = styled.footer`

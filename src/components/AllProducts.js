@@ -17,7 +17,7 @@ const Header = styled.header`
 `;
 
 const ShadowTitle = styled.h2`
-    text-shadow: grey 0.1em 0.1em 0.2em;
+    text-shadow: silver 5px 5px 10px;
 `;
 
 const SelectHeight = styled.select`
