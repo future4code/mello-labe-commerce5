@@ -3,8 +3,13 @@ import styled from 'styled-components';
 import { CartItens } from './CartItens';
 
 const CartWrapper = styled.div`
-    border: solid 1px black;
-    min-height: 80vh;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #C98474;
+    text-align: center;
+    padding: 20px;
+    color: #22252C;
 `
 const Title = styled.h3`
     margin: 10px 5px;

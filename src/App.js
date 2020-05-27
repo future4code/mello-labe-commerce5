@@ -2,11 +2,11 @@ import React from 'react'
 import "./index.css"
 import styled from 'styled-components'
 
-import AllProducts from './components/AllProducts'
-import SideBar from './components/SideBar'
-import CartWindow from './components/CartWindow'
+import AllProducts from './components/Products/AllProducts'
+import SideBar from './components/Filters/SideBar'
+import CartIndex from './components/Cart/CartIndex'
 
-import iconCart from './imgs/iconCart.svg'
+import iconCart from './images/iconCart.svg'
 
 
 const products = [
@@ -66,7 +66,7 @@ const Geral = styled.div`
 
 const AppContainer = styled.div`
   display: grid;
-  grid-template-columns: ${(props) => props.viewCart ? '1fr 3fr 1fr' : '1fr 3fr'};
+  grid-template-columns: ${(props) => props.viewCart ? '25vh 3fr 1fr' : '25vh 3fr'};
   padding: 10px;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
@@ -109,6 +109,11 @@ class App extends React.Component {
     cart: [],
     viewCart: false,
     organization: "increasing",
+    searchProductValue: "",
+    filter: {
+      minValue: "",
+      maxValue: ""
+    }
   }
   
   getFilteredProducts() {
@@ -144,29 +149,59 @@ class App extends React.Component {
     })
   }
 
+  changeFilterValues = (updatedValues) => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        ...updatedValues,
+      }
+    })
+  }
+
+  updatedValue = (event) => {
+    this.setState({
+      searchProductValue: event.target.value,
+    })
+  }
+
   render () {
     const filteredProducts = this.getFilteredProducts()
     const organizedProducts = filteredProducts.sort(this.productsOrganization) 
 
     return (
       <Geral>
+
         <AppContainer viewCart={this.state.viewCart}>
-          <SideBar/>
+
+          <SideBar
+            onChangeValue={this.filterUpdate}
+            searchProductValue={this.state.searchProductValue}
+            updatedFiltersValue={this.updatedValue}
+            />
+
           <AllProducts
           products={organizedProducts} 
           addProduct = {this.buyProduct} 
           onChangeOrder = {this.changeOrganization}
           />
+
           {this.state.viewCart && (
-            <CartWindow/>
+            <CartIndex
+              productsOnCart={this.state.cart}
+              removeProductOnCart={this.removeItem}
+              />
           )}
+
           <NewWindowForCart onClick={this.appearCart}>
             <CartImg src={iconCart} alt="iconCart"/>
           </NewWindowForCart>
+
         </AppContainer>
+
         <Footer>
           <h3>Volte sempre!</h3>
         </Footer>
+
       </Geral>
     )
   }

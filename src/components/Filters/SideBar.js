@@ -13,10 +13,35 @@ const SideBarBox = styled.div`
 
 const FieldSearch = styled.div`
     margin: 10px 0;
-
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`
+const InputValue = styled.input`
+    margin-top: 5px;
 `
 
 export const SideBar = (props) => {
+
+    const returnUpdatedMinValue = event => {
+        const value = Number(event.target.value)
+
+        const updatedValues = {
+            "minValue": value,
+        }
+
+        props.onChangeValue(updatedValues)
+    }
+
+    const returnUpdatedMaxValue = event => {
+        const value = Number(event.target.value)
+
+        const updatedValues = {
+            "maxValue": value,
+        }
+
+        props.onChangeValue(updatedValues)
+    }
     
     return (
         <SideBarBox>
@@ -24,25 +49,30 @@ export const SideBar = (props) => {
 
             <FieldSearch>
                 <label>Valor Mínimo:</label>
-                <input
+                <InputValue
                     type="number"
                     name="minVal"
+                    min={0}
+                    onChange={returnUpdatedMinValue}
                 />
             </FieldSearch>
 
             <FieldSearch>
                 <label>Valor Máximo:</label>
-                <input
+                <InputValue
                     type="number"
                     name="maxVal"
+                    onChange={returnUpdatedMaxValue}
                 />
             </FieldSearch>
 
             <FieldSearch>
                 <label>Buscar Produto:</label>
-                <input
+                <InputValue
                     type="text"
-                    name="busca"
+                    name="buscaNome"
+                    value={props.searchProductValue}
+                    onChange={props.updatedFilterValues}
                 />
             </FieldSearch>
 
