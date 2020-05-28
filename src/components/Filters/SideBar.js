@@ -19,7 +19,6 @@ const FieldSearch = styled.div`
 `
 const InputValue = styled.input`
     margin-top: 5px;
-<<<<<<< HEAD
     padding: 10px 0;
     border: none;
     border-bottom: solid 1px;
@@ -42,13 +41,7 @@ const InputText = styled.input`
     border-bottom: solid 1px;
     outline: none;
     width: 10vw;
-=======
-    border: none;
-    border-bottom: solid 1px;
-    outline: none;
->>>>>>> master
     background: transparent;
-    -webkit-appearance: none;
 `
 
 export const SideBar = (props) => {
@@ -75,12 +68,8 @@ export const SideBar = (props) => {
     
     return (
         <SideBarBox>
-<<<<<<< HEAD
-            <h3>Filtros</h3>
-=======
-            <h2>Filtros</h2>
->>>>>>> master
 
+            <h3>Filtros</h3>
             <FieldSearch>
                 <label>Valor Mínimo:</label>
                 <InputValue
@@ -102,11 +91,7 @@ export const SideBar = (props) => {
 
             <FieldSearch>
                 <label>Buscar Produto:</label>
-<<<<<<< HEAD
                 <InputText
-=======
-                <InputValue
->>>>>>> master
                     type="text"
                     name="searchNome"
                     value={props.searchProductValue}

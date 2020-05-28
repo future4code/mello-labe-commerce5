@@ -1,5 +1,4 @@
 import React from 'react';
-import deleteIcon from '../../images/delete.svg';
 import styled from 'styled-components';
 
 const ListWrapper = styled.li`
@@ -14,11 +13,13 @@ const RemoveItem = styled.svg`
     fill: black;
 
     :hover{
+
         fill: red;
 }
 `
 
 export function CartItens(props){
+
     return(
         <ListWrapper>
             {props.productShownName}
