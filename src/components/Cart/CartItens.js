@@ -6,7 +6,6 @@ const ListWrapper = styled.li`
     justify-content: space-around;
     margin: 10px 5px;
     border-bottom: solid 1px #414141;
-`;
 
 const RemoveItem = styled.svg`
     width: 20px;
@@ -14,9 +13,10 @@ const RemoveItem = styled.svg`
     fill: black;
 
     :hover{
-    fill: red;
+
+        fill: red;
 }
-`;
+`
 
 export function CartItens(props){
 
