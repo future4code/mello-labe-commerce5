@@ -34,8 +34,7 @@ export class CartIndex extends React.Component {
                     key={list.product.name}
                     productShownName = {shownLabel}
                     quantityPerItem = {totalValue}
-                    onDelete={() => this.props.deleteItens(list.product)}
-
+                    onDelete={() => this.props.removeProductOnCart(list.product)}
                 />
             )
         })
@@ -53,12 +52,12 @@ export class CartIndex extends React.Component {
         const shoppingTotal = this.getCartTotal()
         return(
             <CartWrapper>
-
                 <Title>Carrinho de Compras</Title>
                 <ShoppingList>
                     {shoppingList}
                 </ShoppingList>
                 <p>Total: <b>R$ {shoppingTotal}</b></p>
+                <button><p>Esvaziar Carrinho</p></button>
             </CartWrapper>
         )
 
