@@ -207,7 +207,6 @@ class App extends React.Component {
   render () {
     const filteredProducts = this.getFilteredProducts()
     const organizedProducts = filteredProducts.sort(this.productsOrganization)
-    const emptycart = this.state.cart
 
     return (
       <div>

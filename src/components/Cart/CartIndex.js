@@ -48,14 +48,15 @@ export class CartIndex extends React.Component {
     }
 
     render(){
-        const shoppingList = this.getCartList()
         const shoppingTotal = this.getCartTotal()
+
+        const shoppingList = (this.props.productsOnCart.length === 0) ? <p>Seu carrinho está vazio.</p> : this.getCartList()
 
         return(
             <CartWrapper>
                 <Title>Carrinho de Compras</Title>
                 <ShoppingList>
-                        {shoppingList} 
+                    {shoppingList}
                 </ShoppingList>
                 <p>Total: <b>R$ {shoppingTotal}</b></p>
                 <button onClick={this.props.emptyCart}><p>Esvaziar Carrinho</p></button>

@@ -18,10 +18,10 @@ const FieldSearch = styled.div`
     align-items: flex-start;
 `
 const InputValue = styled.input`
-    margin-top: 5px;
-    padding: 10px 0;
+    margin: 5px 0;
+    padding: 5px;
     border: none;
-    border-bottom: solid 1px;
+    border-bottom: 1px solid;
     outline: none;
     width: 10vw;
     background: transparent;
@@ -35,8 +35,8 @@ const InputValue = styled.input`
 `
 
 const InputText = styled.input`
-    margin-top: 5px;
-    padding: 10px 0;
+    margin: 5px 0;
+    padding: 5px;
     border: none;
     border-bottom: solid 1px;
     outline: none;
