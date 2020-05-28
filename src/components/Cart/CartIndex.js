@@ -52,12 +52,12 @@ export class CartIndex extends React.Component {
         const shoppingTotal = this.getCartTotal()
         return(
             <CartWrapper>
-
                 <Title>Carrinho de Compras</Title>
                 <ShoppingList>
                     {shoppingList}
                 </ShoppingList>
                 <p>Total: <b>R$ {shoppingTotal}</b></p>
+                <button><p>Esvaziar Carrinho</p></button>
             </CartWrapper>
         )
 

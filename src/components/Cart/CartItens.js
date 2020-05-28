@@ -16,7 +16,7 @@ const RemoveItem = styled.svg`
     :hover{
         fill: red;
 }
-`
+`;
 
 const RemoveButton = styled.button`
     background-color: transparent;

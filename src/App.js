@@ -60,10 +60,6 @@ const products = [
   },
 ]
 
-const Geral = styled.div`
-  background-color: #CCDFCB;
-`;
-
 const AppContainer = styled.div`
   display: grid;
   grid-template-columns: ${(props) => props.viewCart ? '0.4fr 3fr 1fr' : '0.4fr 3fr'};
@@ -207,8 +203,7 @@ class App extends React.Component {
     const organizedProducts = filteredProducts.sort(this.productsOrganization) 
 
     return (
-      <Geral>
-
+      <div>
         <AppContainer viewCart={this.state.viewCart}>
 
           <SideBar
@@ -240,8 +235,7 @@ class App extends React.Component {
           <h2>Volte Sempre!</h2>
           <p>Leonam Moura | Manoel Neto | Renata Karato</p>
         </Footer>
-
-      </Geral>
+      </div>
     )
   }
 }
