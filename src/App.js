@@ -141,7 +141,19 @@ class App extends React.Component {
     this.setState({
       cart: newCart,
     })
-    console.log(newCart)
+
+  }
+
+  removeItemToCart = (product) => {
+    const newCart = [...this.state.cart]
+
+    const removeProduct = this.state.cart.findIndex((cartItem) => cartItem.product.id === product.id)
+     
+    newCart.splice(removeProduct, 1)
+
+    this.setState({
+      cart: newCart,
+    })
   }
 
   getFilteredProducts() {
@@ -214,7 +226,7 @@ class App extends React.Component {
           {this.state.viewCart && (
             <CartIndex
               productsOnCart={this.state.cart}
-              removeProductOnCart={this.removeItem}
+              removeProductOnCart={this.removeItemToCart}
               />
           )}
 
