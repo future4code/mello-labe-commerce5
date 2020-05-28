@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React from 'react';
+=======
+import React, {Component} from 'react';
+>>>>>>> master
 import styled from 'styled-components';
 import { CartItens } from './CartItens';
 
@@ -16,6 +20,7 @@ const Title = styled.h3`
 `
 const ShoppingList = styled.ul`
     list-style: none;
+<<<<<<< HEAD
     margin: 10px 0;
     padding: 10px 0;
 `
@@ -34,6 +39,25 @@ export class CartIndex extends React.Component {
                     productShownName = {shownLabel}
                     quantityPerItem = {totalValue}
                     onDelete={() => this.props.deleteItens(list.product)}
+=======
+    margin: 0;
+    padding: 0;
+`
+
+export class CartIndex extends Component {
+
+    getCartList() {
+        const shoppingList = this.props.productsOnCart.map(list => {
+            const shownLabel =`${list.quantity}x  ${list.product.name}`
+            const individualQuantity = list.quantity * list.product.value
+
+            return (
+                <CartItens 
+                key={list.product.name}
+                productShownName = {shownLabel}
+                onDelete={() => this.props.deleteItens(list.product)}
+                quantityPerItem = {individualQuantity}
+>>>>>>> master
                 />
             )
         })
@@ -51,13 +75,21 @@ export class CartIndex extends React.Component {
         const shoppingTotal = this.getCartTotal()
         return(
             <CartWrapper>
+<<<<<<< HEAD
                 <Title>Carrinho de Compras</Title>
+=======
+                <Title>Carrinho de compras:</Title>
+>>>>>>> master
                 <ShoppingList>
                     {shoppingList}
                 </ShoppingList>
                 <p>Total: <b>R$ {shoppingTotal}</b></p>
             </CartWrapper>
         )
+<<<<<<< HEAD
     }
+=======
+        }
+>>>>>>> master
 }
 export default CartIndex;
