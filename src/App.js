@@ -144,7 +144,7 @@ class App extends React.Component {
     const newCart = [...this.state.cart]
 
     const removeProduct = this.state.cart.findIndex((cartItem) => cartItem.product.id === product.id)
-     
+
     newCart.splice(removeProduct, 1)
 
     this.setState({
@@ -198,9 +198,16 @@ class App extends React.Component {
     })
   }
 
+  emptyCart = () => {
+    this.setState({
+      cart: []
+    })
+  }
+
   render () {
     const filteredProducts = this.getFilteredProducts()
-    const organizedProducts = filteredProducts.sort(this.productsOrganization) 
+    const organizedProducts = filteredProducts.sort(this.productsOrganization)
+    const emptycart = this.state.cart
 
     return (
       <div>
@@ -222,6 +229,7 @@ class App extends React.Component {
             <CartIndex
               productsOnCart={this.state.cart}
               removeProductOnCart={this.removeItemToCart}
+              emptyCart={this.emptyCart}
               />
           )}
 
