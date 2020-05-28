@@ -2,11 +2,11 @@ import React from 'react'
 import "./index.css"
 import styled from 'styled-components'
 
-import AllProducts from './components/AllProducts'
-import SideBar from './components/SideBar'
-import CartWindow from './components/CartWindow'
+import AllProducts from './components/Products/AllProducts'
+import SideBar from './components/Filters/SideBar'
+import CartIndex from './components/Cart/CartIndex'
 
-import iconCart from './imgs/iconCart.svg'
+import iconCart from './images/iconCart.svg'
 
 
 const products = [
@@ -66,7 +66,7 @@ const Geral = styled.div`
 
 const AppContainer = styled.div`
   display: grid;
-  grid-template-columns: ${(props) => props.viewCart ? '1fr 3fr 1fr' : '1fr 3fr'};
+  grid-template-columns: ${(props) => props.viewCart ? '0.4fr 3fr 1fr' : '0.4fr 3fr'};
   padding: 10px;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
@@ -95,7 +95,9 @@ const Footer = styled.footer`
     background-color: #414141;
     height: 10vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: -3vh;
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
@@ -109,14 +111,52 @@ class App extends React.Component {
     cart: [],
     viewCart: false,
     organization: "increasing",
+    searchProductValue: "",
+    filter: {
+      minValue: "",
+      maxValue: ""
+    }
   }
-  
-  getFilteredProducts() {
-    const { products } = this.state
 
-    let filteredProducts = products.filter((product) => {
-        const productName = product.name
-        return productName
+  changeFilterValues = (updatedFilterValues) => {
+    this.setState({
+      filter: {
+        ...this.state.filter,
+        ...updatedFilterValues,
+      }
+    })
+  }
+
+  addItemToCart = (product) => {
+    const newCart = [...this.state.cart]
+
+    const productInCart = this.state.cart.findIndex((cartItem) => cartItem.product.id === product.id)
+    
+    if(productInCart <= -1){
+      newCart.push({product: product, quantity: 1})
+    } else {
+      newCart[productInCart].quantity += 1
+    }
+
+    this.setState({
+      cart: newCart,
+    })
+    console.log(newCart)
+  }
+
+  getFilteredProducts() {
+    const { products, searchProductValue, filter } = this.state
+    
+    let filteredProducts = products
+      .filter(product => {
+        const productName = product.name.toLowerCase()
+        return productName.indexOf(searchProductValue.toLowerCase()) > -1
+      })
+      .filter((product) => {
+        return product.value < (filter.maxValue || Infinity)
+      })
+      .filter((product) => {
+        return product.value > (filter.minValue || 0)
       })
 
     return filteredProducts
@@ -144,29 +184,51 @@ class App extends React.Component {
     })
   }
 
+  newInputValue = (event) => {
+    this.setState({
+      searchProductValue: event.target.value,
+    })
+  }
+
   render () {
     const filteredProducts = this.getFilteredProducts()
     const organizedProducts = filteredProducts.sort(this.productsOrganization) 
 
     return (
       <Geral>
+
         <AppContainer viewCart={this.state.viewCart}>
-          <SideBar/>
+
+          <SideBar
+            onChangeValue={this.changeFilterValues}
+            searchProductValue={this.state.searchProductValue}
+            newSearchValue={this.newInputValue}
+            />
+
           <AllProducts
           products={organizedProducts} 
-          addProduct = {this.buyProduct} 
+          addProduct = {this.addItemToCart} 
           onChangeOrder = {this.changeOrganization}
           />
+
           {this.state.viewCart && (
-            <CartWindow/>
+            <CartIndex
+              productsOnCart={this.state.cart}
+              removeProductOnCart={this.removeItem}
+              />
           )}
+
           <NewWindowForCart onClick={this.appearCart}>
             <CartImg src={iconCart} alt="iconCart"/>
           </NewWindowForCart>
+
         </AppContainer>
+
         <Footer>
-          <h3>Volte sempre!</h3>
+          <h2>Volte Sempre!</h2>
+          <p>Leonam Moura | Manoel Neto | Renata Karato</p>
         </Footer>
+
       </Geral>
     )
   }

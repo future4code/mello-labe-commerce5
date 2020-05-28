@@ -35,15 +35,15 @@ const ProductGrid = styled.div`
 `;
 
 export const AllProducts = (props) => {
-    const {products=[]} = props;
-    const {buyProduct} = props;
+    const {products} = props;
+    const {addProduct} = props;
     const {onChangeOrder} = props;
 
     return(
         <div> 
             <Header>
                 <ShadowTitle>Pedras Preciosas</ShadowTitle>
-                <p>Quantidade de Produtos: {products.length}</p>
+                <p>Quantidade de Produtos: {products.length} </p>
                 <div>
                     <label>Ordernar Por:</label>
                     <SelectHeight onChange={onChangeOrder}>
@@ -57,7 +57,7 @@ export const AllProducts = (props) => {
                     <OneProduct
                         key={product.name}
                         product={product}
-                        onAddToCart={() => buyProduct(product)}
+                        onAddToCart={() => addProduct(product)}
                     />
                 ))}
             </ProductGrid>

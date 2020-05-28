@@ -13,6 +13,7 @@ const AddProduct = styled.button`
     margin-bottom: 10px;
     border-radius: 10px;
     border: none;
+    outline:  none;
 
     :hover {
         background-color: #414141;
@@ -34,7 +35,7 @@ function OneProduct(props) {
         <Box> 
             <ProductPhoto
             src={product.urlPhoto}
-            alt="PreciousLab Gems"
+            alt="Stone"
             />
             <p>{product.name}</p>
             <p>R${product.value}</p>
