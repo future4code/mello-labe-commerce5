@@ -66,7 +66,11 @@ const Geral = styled.div`
 
 const AppContainer = styled.div`
   display: grid;
+<<<<<<< HEAD
+  grid-template-columns: ${(props) => props.viewCart ? '0.4fr 3fr 1fr' : '0.4fr 3fr'};
+=======
   grid-template-columns: ${(props) => props.viewCart ? '25vh 3fr 1fr' : '25vh 3fr'};
+>>>>>>> master
   padding: 10px;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
@@ -95,8 +99,14 @@ const Footer = styled.footer`
     background-color: #414141;
     height: 10vh;
     display: flex;
+<<<<<<< HEAD
+    justify-content: space-around;
+    align-items: center;
+    margin-top: -3vh;
+=======
     justify-content: center;
     align-items: center;
+>>>>>>> master
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
@@ -115,6 +125,36 @@ class App extends React.Component {
       minValue: "",
       maxValue: ""
     }
+<<<<<<< HEAD
+  }
+
+  changeFilterValues = (updatedFilterValues) => {
+    this.setState({
+      filter: {
+        ...this.state.filter,
+        ...updatedFilterValues,
+      }
+    })
+  }
+
+  addItemToCart = (product) => {
+    const newCart = [...this.state.cart]
+
+    const productInCart = this.state.cart.findIndex((cartItem) => cartItem.product.id === product.id)
+    
+    if(productInCart <= -1){
+      newCart.push({product: product, quantity: 1})
+    } else {
+      newCart[productInCart].quantity += 1
+    }
+
+    this.setState({
+      cart: newCart,
+    })
+    console.log(newCart)
+  }
+
+=======
   }
 
 
@@ -146,6 +186,7 @@ class App extends React.Component {
 
   
 
+>>>>>>> master
   getFilteredProducts() {
     const { products, searchProductValue, filter } = this.state
     
@@ -227,7 +268,8 @@ class App extends React.Component {
         </AppContainer>
 
         <Footer>
-          <h3>Volte sempre!</h3>
+          <h2>Volte Sempre!</h2>
+          <p>Leonam Moura | Manoel Neto | Renata Karato</p>
         </Footer>
 
       </Geral>
