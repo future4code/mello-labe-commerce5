@@ -13,6 +13,7 @@ const AddProduct = styled.button`
     margin-bottom: 10px;
     border-radius: 10px;
     border: none;
+    outline:  none;
 
     :hover {
         background-color: #414141;

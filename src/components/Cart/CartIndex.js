@@ -3,8 +3,13 @@ import styled from 'styled-components';
 import { CartItens } from './CartItens';
 
 const CartWrapper = styled.div`
-    border: solid 1px black;
-    min-height: 80vh;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #C98474;
+    text-align: center;
+    padding: 20px;
+    color: #22252C;
 `
 const Title = styled.h3`
     margin: 10px 5px;
@@ -17,15 +22,17 @@ const ShoppingList = styled.ul`
 
 export class CartIndex extends Component {
 
-    getCartList(){
-        const shoppingList = this.props.cart.map(itens => {
-            const productName = `${itens.quantity}x ${itens.product.name}`
+    getCartList() {
+        const shoppingList = this.props.productsOnCart.map(list => {
+            const shownLabel =`${list.quantity}x  ${list.product.name}`
+            const individualQuantity = list.quantity * list.product.value
 
-            return(
-                <CartItens
-                    key={itens.product.name}
-                    productName={productName}
-                    onDelete={() => this.props.removeCartItem(itens.product)}
+            return (
+                <CartItens 
+                key={list.product.name}
+                productShownName = {shownLabel}
+                onDelete={() => this.props.deleteItens(list.product)}
+                quantityPerItem = {individualQuantity}
                 />
             )
         })
@@ -33,19 +40,21 @@ export class CartIndex extends Component {
     }
 
     getCartTotal(){
-        return this.props.cart.reduce((accumulator, currentProduct) => {
+        return this.props.productsOnCart.reduce((accumulator, currentProduct) => {
             return accumulator + currentProduct.product.value * currentProduct.quantity
         }, 0)
     }
 
     render(){
+        const shoppingList = this.getCartList()
+        const shoppingTotal = this.getCartTotal()
         return(
             <CartWrapper>
                 <Title>Carrinho de compras:</Title>
                 <ShoppingList>
-                    {/* {list} */}
+                    {shoppingList}
                 </ShoppingList>
-                <p>Total: <b>R$</b></p>
+                <p>Total: <b>R$ {shoppingTotal}</b></p>
             </CartWrapper>
         )
         }
