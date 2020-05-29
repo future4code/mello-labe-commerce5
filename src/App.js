@@ -150,6 +150,15 @@ class App extends React.Component {
     localStorage.setItem("newCart", JSON.stringify(this.state.cart));
   }
 
+  componentDidMount () {
+    if(localStorage.getItem('newCart')){
+      const newCart = JSON.parse(localStorage.getItem('newCart'));
+      this.setState({
+        cart: newCart
+      })
+    }  
+  }
+
   changeFilterValues = (updatedFilterValues) => {
     this.setState({
       filter: {
@@ -247,15 +256,6 @@ class App extends React.Component {
     })
   }
 
-  recoverCart() {
-    if(localStorage.getItem('newCart')){
-      const newCart = JSON.parse(localStorage.getItem('newCart'));
-      this.setState({
-        cart: newCart
-      })
-    }  
-  }
-
   render () {
     const filteredProducts = this.getFilteredProducts()
     const organizedProducts = filteredProducts.sort(this.productsOrganization)
@@ -281,7 +281,6 @@ class App extends React.Component {
               productsOnCart={this.state.cart}
               removeProductOnCart={this.removeItemToCart}
               emptyCart={this.emptyCart}
-              recoverCart={this.recoverCart}
               />
           )}
 
