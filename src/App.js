@@ -145,18 +145,17 @@ class App extends React.Component {
       maxValue: ""
     }
   }
-
-  componentDidMount() {
-    if(localStorage.getItem("newCart")) {
-      const newCart = JSON.parse(localStorage.getItem("newCart"));
-
-      this.setState({cart: newCart})
-    }
-  }
-
+  
   componentDidUpdate () {
     localStorage.setItem("newCart", JSON.stringify(this.state.cart));
   }
+
+  componentDidMount() {
+    if(localStorage.getItem('newCart')){
+      const newCart = JSON.parse(localStorage.getItem('newCart'));
+      this.setState({cart: newCart})
+    }  
+
 
   changeFilterValues = (updatedFilterValues) => {
     this.setState({
@@ -188,10 +187,10 @@ class App extends React.Component {
 
     const removeProduct = this.state.cart.findIndex((cartItem) => cartItem.product.id === product.id)
 
-    newCart.splice(removeProduct, 1)
+    newCart.splice(removeProduct, 1);
 
     this.setState({
-      cart: newCart,
+      cart: newCart
     })
   }
 
@@ -234,7 +233,7 @@ class App extends React.Component {
       organization: event.target.value
     })
   }
-  
+
   newInputValue = (event) => {
     this.setState({
       searchProductValue: event.target.value,
