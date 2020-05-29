@@ -272,6 +272,7 @@ class App extends React.Component {
               productsOnCart={this.state.cart}
               removeProductOnCart={this.removeItemToCart}
               emptyCart={this.emptyCart}
+              keepBuying={this.state.viewCart}
               />
           )}
 

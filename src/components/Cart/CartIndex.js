@@ -73,6 +73,7 @@ export class CartIndex extends React.Component {
                 </ShoppingList>
                 <EmptyCartButton onClick={this.props.emptyCart}><u>Limpar Carrinho</u></EmptyCartButton>
                 <p>Total: <b>R$ {shoppingTotal}</b></p>
+                <button onClick={this.props.keepBuying}>Continuar Comprando</button>
             </CartWrapper>
         )
     }
