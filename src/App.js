@@ -145,7 +145,7 @@ class App extends React.Component {
       maxValue: ""
     }
   }
-  
+
   componentDidUpdate () {
     localStorage.setItem("newCart", JSON.stringify(this.state.cart));
   }
