@@ -19,7 +19,7 @@ const products = [
   {
     id: 2,
     name: "Ametista",
-    value: 2252.0,
+    value: 3920.0,
     urlPhoto: "https://16806.cdn.simplo7.net/static/16806/sku/decoracao-capela-de-ametista-5-176kg--p-1547829259521.png",
   },
   {
@@ -138,7 +138,7 @@ class App extends React.Component {
     products: products,
     cart: [],
     viewCart: false,
-    organization: "",
+    organization: "increasing",
     searchProductValue: "",
     filter: {
       minValue: "",
@@ -155,7 +155,7 @@ class App extends React.Component {
       const newCart = JSON.parse(localStorage.getItem('newCart'));
       this.setState({cart: newCart})
     }  
-  }
+
 
   changeFilterValues = (updatedFilterValues) => {
     this.setState({
@@ -225,14 +225,6 @@ class App extends React.Component {
       return product1.value - product2.value
     } else if (organization === "decreasing") {
       return product2.value - product1.value
-    } else if(organization === "name"){
-      const name1 = product1.name
-      const name2 = product2.name
-      return name1.localeCompare(name2)
-    } else if(organization === "nameReverse"){
-      const name1 = product1.name
-      const name2 = product2.name
-      return name2.localeCompare(name1)
     }
   }
 
@@ -270,7 +262,7 @@ class App extends React.Component {
 
           <AllProducts
           products={organizedProducts} 
-          addProduct = {this.addItemToCart}
+          addProduct = {this.addItemToCart} 
           onChangeOrder = {this.changeOrganization}
           />
 

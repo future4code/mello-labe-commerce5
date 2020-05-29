@@ -35,6 +35,11 @@ const EmptyCartButton = styled.p`
     }
 `;
 
+const TotalP = styled.p`
+    color: #056571;
+    font-size: 20px;
+`;
+
 export class CartIndex extends React.Component {
 
     getCartList() {
@@ -72,8 +77,7 @@ export class CartIndex extends React.Component {
                     {shoppingList}
                 </ShoppingList>
                 <EmptyCartButton onClick={this.props.emptyCart}><u>Limpar Carrinho</u></EmptyCartButton>
-                <EmptyCartButton onClick={this.props.recoverCart}><u>Recuperar Carrinho</u></EmptyCartButton>
-                <p>Total: <b>R$ {shoppingTotal}</b></p>
+                <TotalP>Total: <b>R$ {shoppingTotal}</b></TotalP>
             </CartWrapper>
         )
     }
