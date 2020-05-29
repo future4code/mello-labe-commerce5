@@ -47,8 +47,11 @@ export const AllProducts = (props) => {
                 <div>
                     <label>Ordernar Por:</label>
                     <SelectHeight onChange={onChangeOrder}>
+                        <option value="empty"></option>
                         <option value="increasing">Menor Valor</option>
                         <option value="decreasing">Maior Valor</option>
+                        <option value="name">Nome A-Z</option>
+                        <option value="nameReverse">Nome Z-A</option>
                     </SelectHeight>
                 </div>
             </Header>
