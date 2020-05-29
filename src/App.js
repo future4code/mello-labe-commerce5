@@ -58,6 +58,30 @@ const products = [
     value: 2320.0,
     urlPhoto: "https://orgonitespoa.com.br/wp-content/uploads/2019/07/pedra-preto.jpg",
   },
+  {
+    id: 9,
+    name: "Turmalina Negra",
+    value: 933.0,
+    urlPhoto: "https://www.shopdoscristais.com.br/media/catalog/product/cache/1/image/800x/9df78eab33525d08d6e5fb8d27136e95/1/0/10327-turmalina-negra-biterminada.jpg",
+  },
+  {
+    id: 10,
+    name: "Esmeralda Oval",
+    value: 2655.0,
+    urlPhoto: "https://9a4cdd8e5789bb85.cdn.gocache.net/gemasdaterr/catalog/product/cache/1/small_image/480x/9df78eab33525d08d6e5fb8d27136e95/d/s/dsc02003.jpg",
+  },
+  {
+    id: 11,
+    name: "Quartzo Rutilado",
+    value: 998.0,
+    urlPhoto: "https://9a4cdd8e5789bb85.cdn.gocache.net/gemasdaterr/catalog/product/cache/1/small_image/480x/9df78eab33525d08d6e5fb8d27136e95/q/u/quartzo-rutilado-retangular-facetado-25-50x21-mm_5_1.jpg",
+  },
+  {
+    id: 12,
+    name: "Labradorita",
+    value: 3451.0,
+    urlPhoto: "https://9a4cdd8e5789bb85.cdn.gocache.net/gemasdaterr/catalog/product/cache/1/small_image/480x/9df78eab33525d08d6e5fb8d27136e95/d/s/dsc09522.jpg",
+  },
 ]
 
 const AppContainer = styled.div`
@@ -123,15 +147,15 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    if(localStorage.getItem("saveCart")) {
-      const saveCart = JSON.parse(localStorage.getItem("keepCart"));
+    if(localStorage.getItem("newCart")) {
+      const newCart = JSON.parse(localStorage.getItem("newCart"));
 
-      this.setState({cart: saveCart})
+      this.setState({cart: newCart})
     }
   }
 
   componentDidUpdate () {
-    localStorage.setItem("saveCart", JSON.stringify(this.state.cart));
+    localStorage.setItem("newCart", JSON.stringify(this.state.cart));
   }
 
   changeFilterValues = (updatedFilterValues) => {
