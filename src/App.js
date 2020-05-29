@@ -150,7 +150,7 @@ class App extends React.Component {
     localStorage.setItem("newCart", JSON.stringify(this.state.cart));
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if(localStorage.getItem('newCart')){
       const newCart = JSON.parse(localStorage.getItem('newCart'));
       this.setState({
@@ -226,18 +226,18 @@ class App extends React.Component {
     if (organization === "increasing") {
       return product1.value - product2.value
     } else if (organization === "decreasing") {
-      return product2.value - product1.value
-    } else if(organization === "name"){
-      const name1 = product1.name
-      const name2 = product2.name
-      return name1.localeCompare(name2)
-    }else if(organization === "nameReverse"){
-      const name1 = product1.name
-      const name2 = product2.name
-      return name2.localeCompare(name1)
+      return product2.value - product1.value    
+    } else if(organization === "name") {
+        const name1 = product1.name
+        const name2 = product2.name
+        return name1.localeCompare(name2)
+      }else if(organization === "nameReverse"){
+        const name1 = product1.name
+        const name2 = product2.name
+        return name2.localeCompare(name1)
+      }
     }
-  }
-
+  
   changeOrganization = (event) => {
     this.setState({
       organization: event.target.value
