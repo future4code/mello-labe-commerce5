@@ -138,7 +138,7 @@ class App extends React.Component {
     products: products,
     cart: [],
     viewCart: false,
-    organization: "increasing",
+    organization: "",
     searchProductValue: "",
     filter: {
       minValue: "",
@@ -149,13 +149,6 @@ class App extends React.Component {
   componentDidUpdate () {
     localStorage.setItem("newCart", JSON.stringify(this.state.cart));
   }
-
-  componentDidMount() {
-    if(localStorage.getItem('newCart')){
-      const newCart = JSON.parse(localStorage.getItem('newCart'));
-      this.setState({cart: newCart})
-    }  
-
 
   changeFilterValues = (updatedFilterValues) => {
     this.setState({
@@ -225,6 +218,14 @@ class App extends React.Component {
       return product1.value - product2.value
     } else if (organization === "decreasing") {
       return product2.value - product1.value
+    } else if(organization === "name"){
+      const name1 = product1.name
+      const name2 = product2.name
+      return name1.localeCompare(name2)
+    }else if(organization === "nameReverse"){
+      const name1 = product1.name
+      const name2 = product2.name
+      return name2.localeCompare(name1)
     }
   }
 
@@ -244,6 +245,15 @@ class App extends React.Component {
     this.setState({
       cart: []
     })
+  }
+
+  recoverCart() {
+    if(localStorage.getItem('newCart')){
+      const newCart = JSON.parse(localStorage.getItem('newCart'));
+      this.setState({
+        cart: newCart
+      })
+    }  
   }
 
   render () {
@@ -271,6 +281,7 @@ class App extends React.Component {
               productsOnCart={this.state.cart}
               removeProductOnCart={this.removeItemToCart}
               emptyCart={this.emptyCart}
+              recoverCart={this.recoverCart}
               />
           )}
 
