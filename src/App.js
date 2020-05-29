@@ -234,7 +234,7 @@ class App extends React.Component {
       organization: event.target.value
     })
   }
-
+  
   newInputValue = (event) => {
     this.setState({
       searchProductValue: event.target.value,
