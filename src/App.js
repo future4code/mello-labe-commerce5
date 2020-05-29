@@ -72,6 +72,14 @@ const NewWindowForCart = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  path {
+    fill: #22252C;	
+  }
+
+  :active path {
+    fill: #C98474;
+  }
 `;
 
 const CartImg = styled.img`
@@ -84,7 +92,7 @@ const CartImg = styled.img`
   top: 85%;
   -webkit-box-shadow: 5px 5px 5px silver; 
 	-moz-box-shadow: 5px 5px 5px silver;
-	box-shadow: 5px 5px 5px silver;	
+	box-shadow: 5px 5px 5px silver;
 `;
 
 const Footer = styled.footer`
@@ -207,7 +215,7 @@ class App extends React.Component {
   render () {
     const filteredProducts = this.getFilteredProducts()
     const organizedProducts = filteredProducts.sort(this.productsOrganization)
-
+    
     return (
       <div>
         <AppContainer viewCart={this.state.viewCart}>
