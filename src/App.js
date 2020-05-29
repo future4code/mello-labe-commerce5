@@ -122,6 +122,18 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    if(localStorage.getItem("saveCart")) {
+      const saveCart = JSON.parse(localStorage.getItem("keepCart"));
+
+      this.setState({cart: saveCart})
+    }
+  }
+
+  componentDidUpdate () {
+    localStorage.setItem("saveCart", JSON.stringify(this.state.cart));
+  }
+
   changeFilterValues = (updatedFilterValues) => {
     this.setState({
       filter: {
@@ -145,7 +157,6 @@ class App extends React.Component {
     this.setState({
       cart: newCart,
     })
-
   }
 
   removeItemToCart = (product) => {
